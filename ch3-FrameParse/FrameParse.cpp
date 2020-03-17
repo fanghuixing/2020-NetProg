@@ -1,3 +1,5 @@
+// 第三章 帧的解析 C++代码
+
 #include <string>
 #include <fstream>
 #include <iostream>
@@ -58,9 +60,12 @@ int main(int argc, char* argv[])
 	outfile.open(argv[2], ios::out | ios::binary); //打开输出文件
 
 	bool bframe = true; //是否还有帧需要解析
-	streampos nframes = 0;//文件中当前读写的字符/字节的相对位置
-	int nframenum = 0;//帧序号
-	int nframelen = 0;//数据长度
+    
+	//文件中当前读写的字符/字节的相对位置
+	streampos nframes = 0;
+
+	int nframenum = 0; // 帧序号
+	int nframelen = 0; // 数据长度
 
 	while (bframe)
 	{
@@ -68,10 +73,11 @@ int main(int argc, char* argv[])
 		nframenum++;
 		cout << endl << "帧" << nframenum << "开始解析" << endl;
 
-		//tellg: Returns the position of the current character in the input stream.
-		nframes = infile.tellg();//得到最新的开始位置
+		// tellg: Returns the position of the current character 
+		// in the input stream.
+		nframes = infile.tellg(); // 得到最新的开始位置
 
-		//查找7B前导码
+		//查找7B前导码 (aaaaaaaaaaaaaa)_16
 		for (int i = 0; i < 7; i++)
 		{
 			//get: 在文件中读取一个字节到内存
@@ -82,14 +88,16 @@ int main(int argc, char* argv[])
 				return 1;
 			}
 		}
-		//前导码结束后
-		//判断1B的帧前定界符
+
+		// 前导码结束后
+		// 判断1B的帧前定界符(0xab)
 		if (infile.get() != 0xab)
 		{
 			cout << "没有找到合法的帧" << endl;
 			infile.close();
 			return 1;
 		}
+
 		//seekg是对输入文件定位，它有两个参数：
 		//第一个参数是偏移量，第二个参数是基地址
 		infile.seekg(nframes, ios::beg);
