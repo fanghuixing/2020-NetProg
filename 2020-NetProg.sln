@@ -9,9 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrepareInput", "PrepareInpu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch3-FrameParse", "ch3-FrameParse\ch3-FrameParse.vcxproj", "{94A68248-4233-44AB-A71A-11E756E9AF67}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-crc", "..\ch4-crc\ch4-crc.vcxproj", "{F6FDD722-5D9A-49A5-BE94-443F9E27F473}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-crc", "ch4-crc\ch4-crc.vcxproj", "{F6FDD722-5D9A-49A5-BE94-443F9E27F473}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-crc32-frameclass", "..\ch4-crc32-frameclass\ch4-crc32-frameclass.vcxproj", "{239E1A72-EDF5-4ABC-BAAC-78FF26601965}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ch4-crc32-frameclass", "ch4-crc32-frameclass\ch4-crc32-frameclass.vcxproj", "{239E1A72-EDF5-4ABC-BAAC-78FF26601965}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
