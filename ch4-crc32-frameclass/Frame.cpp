@@ -2,9 +2,7 @@
 
 #include "Frame.h"
 #include <WinSock2.h>
-#include <vector>
 #include <iostream>
-#include <iomanip> 
 
 using std::fstream;
 using std::iostream;
