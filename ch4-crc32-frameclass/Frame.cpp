@@ -4,16 +4,25 @@
 #include <WinSock2.h>
 #include <vector>
 #include <iostream>
-
+#include <iomanip> 
 
 using std::fstream;
 using std::iostream;
-using std::vector;
 using std::cout;
-using std::hex;
 using std::endl;
 using std::ios;
+using std::hex;
+using std::dec;
 
+// 动态连接库ws2_32.dll的导入库
+// An import library (.lib) file contains 
+// information the linker needs to resolve 
+// external references to exported DLL functions, 
+// so the system can locate the specified DLL 
+// and exported DLL functions at run time. You 
+// can create an import library for your DLL 
+// when you build your DLL.
+// https://docs.microsoft.com/zh-cn/windows/win32/dlls/dynamic-link-library-creation?redirectedfrom=MSDN#using-an-import-library
 #pragma comment(lib,"ws2_32.lib")
 
 
@@ -48,45 +57,60 @@ Frame::Frame(Byte* dest_addr, Byte* src_addr, string data)
 
 void Frame::writePreamble(fstream &file)
 {	
+	cout << "前导码:";
 	for (Byte var : this->preamble)
 	{
+		printf("%X", var);
+		
 		file.put(var);
 	}
-	
+	cout << endl;
 }
 
 void Frame::writeSFD(fstream &file)
 {
+	cout << "帧前定界符:";
 	file.put(this->start_frame_delimiter);
+	printf("%X\n", this->start_frame_delimiter);
+	
 }
 
 void Frame::writeDestAddr(fstream &file)
 {
+	cout << "目的地址:";
 	for (int i = 0; i < 6; i++)
 	{
-		file.put(this->dest_addr[i]);
+		file.put(this->dest_addr[i]);		
+		printf("%X", this->dest_addr[i]);
 	}
-	
+	cout << endl;
 }
 
 void Frame::writeSrcAddr(fstream &file)
 {
+	cout << "源地址:";
 	for (int i = 0; i < 6; i++)
 	{
 		file.put(this->src_addr[i]);
+		printf("%X", this->src_addr[i]);
 	}	
+	cout << endl;
 	
 }
 
 void Frame::writeLength(fstream &file)
 {
+	cout << "长度:";
 	u_short len = htons(this->length);
 	file.write((const char *)&len, 2);
+	printf("%04X\n", this->length);
 }
 
 void Frame::writeData(fstream &file)
 {
+	cout << "数据:" ;
 	file << this->data;
+	cout << this->data << endl;
 
 	for (int i = 0; i < MINLEN - this->length; i++)
 	{
@@ -99,12 +123,13 @@ void Frame::writeData(fstream &file)
 
 void Frame::writeCrc(fstream &file)
 {
-
+	cout << "CRC校验码:";
 	for (Byte var : this->crc)
 	{
 		file.put(var);
+		printf("%02X", var);
 	}	
-
+	cout << endl;
 }
 
 // 计算CRC码
@@ -169,13 +194,10 @@ int main(int argc, char* argv[]) {
 	Byte src_addr[6] = { 0x00, 0x00, 0x80, 0x1a, 0xe6, 0x65 };
 	// 数据
 	string data = "Hello world!";
-
-
+	
 	Frame fr(dest_addr, src_addr, data);
 
 	unsigned int crc = fr.calcCrc();
-
-	cout << hex << crc << endl;
 
 	unsigned int nv = htonl(crc); // 转成网络字节序
 	fr.setCrc(nv);

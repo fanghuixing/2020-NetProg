@@ -2,9 +2,6 @@
 #include <iostream>
 #include "Element.h"
 #include <string>
-#include <vector>
-
-using std::vector;
 
 class netvector
 {
