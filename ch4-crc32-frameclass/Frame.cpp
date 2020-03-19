@@ -195,23 +195,25 @@ int main(int argc, char* argv[]) {
 	// 数据
 	string data = "Hello world!";
 	
+	// 创建帧对象
 	Frame fr(dest_addr, src_addr, data);
 
+	// 计算CRC校验码
 	unsigned int crc = fr.calcCrc();
 
-	unsigned int nv = htonl(crc); // 转成网络字节序
-	fr.setCrc(nv);
+	unsigned int nv = htonl(crc); // 转成网络字节序    
+								  
+	fr.setCrc(nv);   // CRC校验码保存到帧中
 
 	fstream outfile;  //创建输出文件流
-	//注意ios::in不能省略，因为我们需要从文件中读取数据
-	outfile.open(argv[1],
-		ios::in |
-		ios::out |
-		ios::binary |
-		ios::trunc); //打开输出文件
+	
+	// 打开输出文件
+	outfile.open(argv[1], ios::out | ios::binary | ios::trunc); 
 
+	// 把帧写入文件
 	fr.frameToFile(outfile);
 
+	// 关闭文件
 	outfile.close();
 
 }
