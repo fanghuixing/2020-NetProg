@@ -63,7 +63,7 @@ void main(int argc, char* argv[])
 	if (sock == INVALID_SOCKET)
 	{
 		int code = WSAGetLastError();
-		cout << endl << "创建Socket失败！" << endl;
+		cout << endl << "创建Socket失败！CODE:" << code << endl;
 		return;
 	}
 
