@@ -1,0 +1,15 @@
+
+#include<fstream>
+#include<stdlib.h>
+#include <iostream>
+
+
+using std::cout;
+using std::fstream;
+using std::endl;
+using std::hex;
+using std::dec;
+using std::streampos;
+using std::ios;
+using std::string;
+
