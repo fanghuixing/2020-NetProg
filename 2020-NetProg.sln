@@ -25,7 +25,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab-4", "..\Lab-4\Lab-4.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab5", "..\lab5\lab5.vcxproj", "{F42BA159-F71D-4A13-BF1D-E51502723ACB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ftpc", "..\ftpc\ftpc.vcxproj", "{34592179-0B55-4044-9916-3EA909631572}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ftpc", "ftpc\ftpc.vcxproj", "{34592179-0B55-4044-9916-3EA909631572}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
